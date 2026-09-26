@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070a0f">
+<title>Nicodemus “Nicxon” Muema — Founder & Full-Stack Engineer</title>
+<meta name="description" content="Portfolio of Nicodemus “Nicxon” Muema — Nairobi-based founder, full-stack developer, AI automation builder and University of Nairobi medical student building systems from Android/Termux.">
+<meta name="author" content="Nicodemus Muema">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nicodemus “Nicxon” Muema — Founder & Full-Stack Engineer">
+<meta property="og:description" content="AI, automation, infrastructure and systems — built with unusual constraints and relentless iteration.">
+<meta property="og:url" content="https://portfolio.nicxon.tech/">
+<meta property="og:image" content="https://portfolio.nicxon.tech/assets/img/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nicxon — Founder & Full-Stack Engineer">
+<meta name="twitter:description" content="Founder-engineer building AI, automation and systems from Nairobi.">
+<meta name="twitter:image" content="https://portfolio.nicxon.tech/assets/img/og-card.png">
+<link rel="canonical" href="https://portfolio.nicxon.tech/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <a class="brand" href="#top"><b>N<span>/</span>X</b><small>NICXON</small></a>
+  <button class="navbtn" aria-label="Toggle navigation" aria-expanded="false"><i></i><i></i></button>
+  <nav><a href="#about">About</a><a href="#ventures">Ventures</a><a href="#stack">Stack</a><a href="#credentials">Credentials</a><a class="navcta" href="#contact">Contact</a></nav>
+</header>
+<main id="main">
+<section id="top" class="hero">
+  <div class="hero-copy reveal">
+    <p class="eyebrow"><span></span>Nairobi, Kenya · founder-engineer</p>
+    <h1>I build systems where <em>AI meets execution.</em></h1>
+    <p class="lede">I’m Nicodemus “Nicxon” Muema — a solo founder, full-stack developer and first-year MBChB student at the University of Nairobi, building products across AI automation, infrastructure and applied systems engineering.</p>
+    <p class="proof">The unusual part: almost my entire technical stack was learned, built and maintained from <strong>Android + Termux</strong> — without a conventional laptop development setup.</p>
+    <div class="actions"><a class="btn primary" href="#ventures">Explore ventures ↘</a><a class="btn ghost" href="https://github.com/XGENMANIAC" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+    <div class="stats"><div><b>5</b><span>active systems</span></div><div><b>3</b><span>AI models in Kairox</span></div><div><b>1</b><span>phone-first journey</span></div></div>
+  </div>
+  <div class="visual reveal" id="visual"><canvas id="hero3d"></canvas><div class="fallback"><i></i><i></i><b></b></div><span class="vtop">systems / ai / infra</span><span class="vbot">constraint → leverage</span></div>
+</section>
+
+<div class="ticker"><div>PYTHON · FASTAPI · REACT · TAURI · CLOUDFLARE · MCP · SUPABASE · TERMUX · PYTHON · FASTAPI · REACT · TAURI · CLOUDFLARE · MCP · SUPABASE · TERMUX ·</div></div>
+
+<section id="about" class="section">
+  <div class="kicker reveal">01 / About</div>
+  <div class="about-grid">
+    <h2 class="reveal">Medicine taught me to study systems. Engineering taught me to build them.</h2>
+    <div class="copy reveal">
+      <p>I’m currently a first-year MBChB student at the University of Nairobi while seriously exploring a future in computer science, especially systems, AI and security. I’m applying to NYU Abu Dhabi for Early Decision and MIT for Regular Decision in computer science.</p>
+      <p>That dual-track is not a contradiction. Medicine trains me to reason through complex, high-stakes systems; engineering gives me a way to design, automate and improve them. My projects live in the overlap: data, interfaces, infrastructure, automation and decision-support tools that turn messy workflows into usable systems.</p>
+      <p>Most of that journey happened under a practical constraint: Android + Termux instead of a laptop. That forced me to care about resource efficiency, reproducibility, lightweight tooling and infrastructure that works outside ideal conditions.</p>
+      <blockquote><small>OPERATING PRINCIPLE</small>“Agents propose, I dispose.”<span>Automation should surface options and reduce friction — the human keeps final authority.</span></blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="ventures" class="section alt">
+  <div class="section-head reveal"><div><div class="kicker">02 / Ventures & Projects</div><h2>Things I’ve built to work in the real world.</h2></div><p>Expand a project to see the system design, stack and engineering decisions behind it.</p></div>
+  <div class="projects">
+    <article class="project reveal featured">
+      <button class="project-toggle" aria-expanded="false"><span class="num">01</span><span class="summary"><span class="top"><b>Kairox <small>formerly TradeSight AI</small></b><i>AI + quantitative systems</i></span><span>Systematic intraday analysis desktop app built around multi-model orchestration, tick-data tooling and disciplined strategy validation.</span><span class="tags"><u>Tauri</u><u>FastAPI</u><u>Gemini</u><u>Llama 3.3 70B</u><u>Kimi K2</u></span></span><span class="plus">+</span></button>
+      <div class="detail" hidden><div><h4>System</h4><p>Tauri + FastAPI app for XAU/USD, EUR/USD and USD/JPY. Gemini Flash handles chart/vision analysis, Llama 3.3 70B handles news sentiment, and Kimi K2 acts as the reasoning/decision layer.</p></div><div><h4>Infrastructure</h4><p>Supabase, Upstash Redis and Lemon Squeezy. A live Dukascopy tick-data MCP server runs from Termux behind a rotating Cloudflare tunnel.</p></div><div><h4>Constraint engineering</h4><p>Custom Python tooling for journaling, tick-data fetching, order-flow backtesting and signal generation, with a stdlib-first approach so the system can run reliably on a phone.</p></div><div><h4>Validation discipline</h4><p>Paper-trading gates, out-of-sample testing and probation/kill criteria are used to separate promising strategies from fragile ones.</p></div></div>
+    </article>
+
+    <article class="project reveal">
+      <button class="project-toggle" aria-expanded="false"><span class="num">02</span><span class="summary"><span class="top"><b>Nicxon Agents</b><i>AI automation agency</i></span><span>Demo-site-first AI automation agency targeting Nairobi training institutes and operations-heavy organizations.</span><span class="tags"><u>Automation</u><u>Client demos</u><u>nicxon.tech</u><u>ImprovMX</u></span></span><span class="plus">+</span></button>
+      <div class="detail" hidden><div><h4>Go-to-market</h4><p>I build a working demo before pitching, so the conversation starts with proof instead of promises.</p></div><div><h4>Current direction</h4><p>Developing toward a training-institute automation engagement spanning an operations dashboard, mentor matching, tracking systems and web infrastructure.</p></div><div><h4>Infrastructure</h4><p>nicxon.tech with DNS on Hostinger and email forwarding through ImprovMX, plus a reusable delivery process for outreach and client builds.</p></div></div>
+    </article>
+
+    <article class="project reveal">
+      <button class="project-toggle" aria-expanded="false"><span class="num">03</span><span class="summary"><span class="top"><b>Life OS / AEGIS</b><i>personal automation</i></span><span>Personal operations system that turns messages, app usage and spending into structured, human-approved actions.</span><span class="tags"><u>Python</u><u>FastAPI</u><u>SQLite</u><u>Telegram</u><u>Workers</u><u>D1</u></span></span><span class="plus">+</span></button>
+      <div class="detail" hidden><div><h4>Life OS</h4><p>Python/FastAPI backend with SQLite, Telegram as the interface and systemd timers on a Hostinger VPS behind Cloudflare tunnels.</p></div><div><h4>M-Pesa automation</h4><p>An SMS webhook turns M-Pesa transaction messages into structured expense records automatically.</p></div><div><h4>AEGIS</h4><p>A Cloudflare Worker + D1 + PWA + Android companion system monitors app usage and limits social media with a propose-then-confirm loop.</p></div><div><h4>Philosophy</h4><p>Agents propose; I dispose. Automation can recommend and prepare actions, but the human retains final control.</p></div></div>
+    </article>
+
+    <article class="project reveal">
+      <button class="project-toggle" aria-expanded="false"><span class="num">04</span><span class="summary"><span class="top"><b>SAT Prep Web App</b><i>education product</i></span><span>strategy.nicxon.tech — a SAT study and strategy tool currently integrating Google AdSense.</span><span class="tags"><u>Web app</u><u>Study systems</u><u>AdSense</u></span></span><span class="plus">+</span></button>
+      <div class="detail" hidden><div><h4>Product</h4><p>Turns study strategy into a structured web product rather than a pile of static notes, with a focus on usability, pacing and discoverability.</p></div><div><h4>Live system</h4><p>Running at strategy.nicxon.tech and being refined around usefulness, distribution and lightweight monetization.</p></div></div>
+    </article>
+
+    <article class="project reveal">
+      <button class="project-toggle" aria-expanded="false"><span class="num">05</span><span class="summary"><span class="top"><b>ParkIt Pipeline</b><i>media automation</i></span><span>YouTube Shorts automation that reframes landscape video into vertical with subject tracking and karaoke-style captions.</span><span class="tags"><u>FFmpeg</u><u>OpenCV</u><u>Computer vision</u><u>Automation</u></span></span><span class="plus">+</span></button>
+      <div class="detail" hidden><div><h4>Pipeline</h4><p>Automates landscape-to-vertical reframing while keeping the primary subject inside the crop, then overlays timed karaoke-style captions.</p></div><div><h4>Engineering focus</h4><p>Coordinates detection, crop motion, timing, typography and rendering into a repeatable content-production workflow.</p></div></div>
+    </article>
+  </div>
+</section>
+
+<section id="stack" class="section">
+  <div class="section-head reveal"><div><div class="kicker">03 / Skills & Stack</div><h2>Tools chosen for leverage, not decoration.</h2></div><p>Compact infrastructure: enough power to ship seriously, without assuming ideal hardware or unlimited resources.</p></div>
+  <div class="stack-grid">
+    <article class="stack-card reveal"><span>01</span><h3>Languages & frameworks</h3><p>Python · FastAPI · React · Node.js · Tauri · JavaScript · TypeScript</p></article>
+    <article class="stack-card reveal"><span>02</span><h3>Infra & cloud</h3><p>Supabase · Cloudflare Workers · D1 · Tunnels · Hostinger VPS · Upstash Redis · GitHub</p></article>
+    <article class="stack-card reveal"><span>03</span><h3>AI & orchestration</h3><p>Gemini · Llama · Kimi K2 · multi-model routing · MCP servers · prompt engineering · agent workflows</p></article>
+    <article class="stack-card reveal"><span>04</span><h3>Integrations & media</h3><p>Crypto exchange integrations · M-Pesa/Daraja · FFmpeg · OpenCV · Telegram bots · REST APIs · SQLite</p></article>
+  </div>
+  <div class="termux reveal"><span>● ● ●</span><code>$ uname -a</code><p>Android / Termux — the environment behind nearly every project on this page.</p></div>
+</section>
+
+<section id="credentials" class="section alt">
+  <div class="section-head reveal"><div><div class="kicker">04 / Credentials</div><h2>Technical breadth with a systems bias.</h2></div><p>Grouped by domain. Expand each category for individual credentials.</p></div>
+  <div class="credentials">
+    <details open class="reveal"><summary><b>Cloud, Networking & Security</b><span>5 credentials +</span></summary><ul><li>AWS Solutions Architect Associate — Architecture & Tools</li><li>Cisco CCNA 2020 — Network Topology Architectures (WAN, Cloud, SOHO)</li><li>CompTIA Network+ — Network Types; Cables & Connectors</li><li>CompTIA CASP+ — Assessing & Managing Risk</li><li>Certified in Cybersecurity (CC) — Security Governance, Policies & Controls</li></ul></details>
+    <details class="reveal"><summary><b>AI & Data</b><span>7 credentials +</span></summary><ul><li>AI for Business Professionals — HP LIFE</li><li>Overview of AI — Huawei ICT Academy</li><li>Exploring the Intelligent World 2030 — Huawei ICT Academy</li><li>Generative AI for Business Transformation — Skillsoft</li><li>AI/ML and AIOps in DevOps — Skillsoft</li><li>PL-300: Loading & Transforming Data in Power BI — Microsoft</li><li>Complete Guide to Excel 365 — Charts & Sparklines</li></ul></details>
+    <details class="reveal"><summary><b>Leadership & Project Management</b><span>4 credentials +</span></summary><ul><li>Scrum Master — Scrum Master & Facilitation</li><li>Planning Your Growth as a Leader</li><li>Navigating Change and Conflict in Projects</li><li>Engaging the Power of a Multigenerational Workforce — Global</li></ul></details>
+  </div>
+</section>
+
+<section id="contact" class="section contact">
+  <div class="contact-copy reveal"><div class="kicker">05 / Contact</div><h2>Have a hard problem, messy workflow or ambitious build?</h2><p>I’m interested in systems work, AI automation, technical collaborations and product opportunities where shipping matters more than slides.</p><div class="links"><a href="mailto:nicodemusmuema84@gmail.com">nicodemusmuema84@gmail.com ↗</a><a href="https://github.com/XGENMANIAC" target="_blank" rel="noreferrer">github.com/XGENMANIAC ↗</a><a href="https://www.linkedin.com/in/nicodemus-muema" target="_blank" rel="noreferrer">linkedin.com/in/nicodemus-muema ↗</a></div></div>
+  <form id="contact-form" class="contact-form reveal"><label>Name<input name="name" required></label><label>Your email<input name="email" type="email" required></label><label>What are you building?<textarea name="message" rows="6" required></textarea></label><button class="btn primary" type="submit">Compose email ↗</button><small>No backend or form tracking — this opens your email client with the message pre-filled.</small></form>
+</section>
+</main>
+<footer><div><b>Nicxon</b><span>Founder · Full-stack · AI systems</span></div><p>Built for the web. Maintained from wherever the terminal runs.</p><a href="#top">Back to top ↑</a></footer>
+<script src="assets/js/main.js" defer></script>
+</body></html>
