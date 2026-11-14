@@ -16,7 +16,7 @@
   const loader = document.getElementById('loader');
   const counterEl = document.getElementById('loader-counter-val');
   const progressBar = document.getElementById('loader-progress-fill');
-  const logEl = document.getElementById('loader-log-text');
+  const logEl = document.getElementById('loader-live-step');
   const liveClockEl = document.getElementById('live-clock');
   const themeToggleBtn = document.getElementById('theme-toggle');
   const emailCopyBtn = document.getElementById('email-copy-btn');
@@ -96,18 +96,13 @@
         progressBar.style.width = '100%';
         if (logEl) logEl.innerHTML = `<strong>&gt;</strong> SYSTEM CALIBRATED // OPENING INTERFACE`;
 
-        // Eye-comfort pause before curtain split
+        // Brief pause then lift the veil (CSS handles the translateY(-100%) wipe)
         setTimeout(() => {
           document.body.classList.add('loaded');
           loader.setAttribute('aria-hidden', 'true');
           sessionStorage.setItem('nm_portfolio_seen', 'true');
-
-          setTimeout(() => {
-            if (document.body.classList.contains('loaded')) {
-              loader.style.display = 'none';
-            }
-          }, 850);
-        }, isExpedited ? 80 : 200);
+          // CSS transition handles exit; pointer-events blocked via visibility:hidden
+        }, isExpedited ? 80 : 220);
       }
     }
 

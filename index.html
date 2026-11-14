@@ -66,37 +66,51 @@
   <!-- ======================================================================
        ARCHITECTURAL PRELOADER & TELEMETRY SHUTTER
        ====================================================================== -->
-  <div id="loader" role="status" aria-live="polite" aria-label="Loading portfolio telemetry">
-    <div class="curtain-top"></div>
-    <div class="curtain-bottom"></div>
+  <div id="loader" role="status" aria-live="polite" aria-label="Loading portfolio">
+    <div class="loader-curtain"></div>
+    <div class="loader-container wrap">
 
-    <div class="loader-content">
-      <div class="loader-topbar">
-        <div class="loader-brand">
+      <!-- Top bar -->
+      <div class="loader-bar-top">
+        <div class="loader-brand-lockup">
           <div class="loader-monogram">NM</div>
           <span class="meta">NICODEMUS MUEMA // FOLIO '26</span>
         </div>
-        <div class="banner-telemetry">
-          <span class="loader-beacon" aria-hidden="true"></span>
+        <div class="loader-meta-right">
+          <span class="pulse-beacon" aria-hidden="true"></span>
           <span class="meta">01°17'S 36°49'E</span>
         </div>
       </div>
 
-      <div class="loader-digits">
-        <div class="loader-counter"><span id="loader-counter-val">00</span><span>%</span></div>
-        <div class="loader-state">
-          <span class="meta" style="color:var(--rust)">INITIALIZING</span><br>
-          <span class="meta">CALIBRATING INTERFACE</span>
+      <!-- Center stage -->
+      <div class="loader-stage">
+        <p class="loader-preamble meta">Nairobi, Kenya / Developer &amp; MBChB Student</p>
+        <div class="loader-manifesto">
+          Building software for the way people <em>actually work.</em>
+        </div>
+        <div class="loader-metrics">
+          <div class="loader-counter-wrap">
+            <span class="loader-counter-val" id="loader-counter-val">00</span>
+            <span class="loader-counter-unit">%</span>
+          </div>
+          <div class="loader-status-stream">
+            <span class="loader-live-step" id="loader-live-step"><strong>&gt;</strong> CALIBRATING SYSTEM TELEMETRY</span>
+            <span class="loader-env-badge">LINUX · TERMUX · CLOUD</span>
+          </div>
         </div>
       </div>
 
-      <div class="loader-progress-track">
-        <div class="loader-progress-bar" id="loader-progress-fill"></div>
+      <!-- Bottom dock -->
+      <div class="loader-bottom-dock">
+        <div class="loader-horizon-track">
+          <div class="loader-horizon-laser" id="loader-progress-fill"></div>
+        </div>
+        <div class="loader-foot-stats">
+          <span class="meta">NICXON AGENTS</span>
+          <span class="meta">MED · KAIROX · DEVTOOLS · STRATEGY</span>
+        </div>
       </div>
 
-      <div class="loader-log" id="loader-log-text">
-        <strong>&gt;</strong> CALIBRATING SYSTEM TELEMETRY
-      </div>
     </div>
   </div>
 
