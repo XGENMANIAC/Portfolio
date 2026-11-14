@@ -1,97 +1,300 @@
-const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+/**
+ * Nicodemus "Nicxon" Muema — Portfolio Scripts (2026 Editorial Edition)
+ * Core Features:
+ * 1. Kinetic Telemetry Preloader & Curtain Orchestration
+ * 2. Live Nairobi (EAT) Clock
+ * 3. Interactive Project Architecture Drawers
+ * 4. Theme Switcher (Paper / Obsidian)
+ * 5. One-Click Email Copy with State Feedback
+ * 6. Quick Compose Mailto Link
+ */
 
-const navBtn=$('.navbtn'),nav=$('nav');
-navBtn?.addEventListener('click',()=>{
-  const open=nav.classList.toggle('open');
-  navBtn.setAttribute('aria-expanded',String(open));
-});
-$$('nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');navBtn?.setAttribute('aria-expanded','false')}));
+(function () {
+  'use strict';
 
-$$('.project-toggle').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const card=btn.closest('.project'),panel=$('.detail',card),open=btn.getAttribute('aria-expanded')==='true';
-    btn.setAttribute('aria-expanded',String(!open));
-    card.classList.toggle('open',!open);
-    panel.hidden=open;
-  });
-});
+  // DOM Elements
+  const loader = document.getElementById('loader');
+  const counterEl = document.getElementById('loader-counter-val');
+  const progressBar = document.getElementById('loader-progress-fill');
+  const logEl = document.getElementById('loader-log-text');
+  const liveClockEl = document.getElementById('live-clock');
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const emailCopyBtn = document.getElementById('email-copy-btn');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const navEl = document.querySelector('header nav');
+  const replayBtn = document.getElementById('replay-loader');
+  const contactForm = document.getElementById('quick-contact-form');
 
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
-},{threshold:.12,rootMargin:'0px 0px -40px'});
-$$('.reveal').forEach(el=>io.observe(el));
+  // Check Reduced Motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-$('#contact-form')?.addEventListener('submit',e=>{
-  e.preventDefault();
-  const fd=new FormData(e.currentTarget);
-  const subject=encodeURIComponent('Portfolio inquiry from '+fd.get('name'));
-  const body=encodeURIComponent('Name: '+fd.get('name')+'\nEmail: '+fd.get('email')+'\n\n'+fd.get('message'));
-  location.href='mailto:nicodemusmuema84@gmail.com?subject='+subject+'&body='+body;
-});
+  /* --------------------------------------------------------------------------
+     1. PRELOADER & LOADING MOTION ORCHESTRATION
+     -------------------------------------------------------------------------- */
+  const telemetryLogs = [
+    { at: 10, text: 'CALIBRATING SYSTEM TELEMETRY' },
+    { at: 28, text: 'RESOLVING ANATOMY // MBCHB + SYSTEMS' },
+    { at: 48, text: 'INGESTING ARCHITECTURE: NEXT.JS · TAURI · PYTHON' },
+    { at: 72, text: 'ENVIRONMENT VERIFIED: LINUX · TERMUX · CLOUD' },
+    { at: 92, text: 'CALIBRATING DISPLAY MATRICES' },
+    { at: 100, text: 'SYSTEM CALIBRATED // OPENING INTERFACE' }
+  ];
 
-async function boot3D(){
-  const canvas=$('#hero3d'),wrap=$('#visual');
-  if(!canvas||!wrap) return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.connection?.saveData) return;
-  try{
-    const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js');
-    const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
-    renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));
-    const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(48,1,.1,100);
-    camera.position.z=5.2;
-
-    const group=new THREE.Group();scene.add(group);
-    const geo=new THREE.IcosahedronGeometry(1.45,2);
-    const wire=new THREE.LineSegments(new THREE.WireframeGeometry(geo),new THREE.LineBasicMaterial({color:0x79f2c0,transparent:true,opacity:.33}));
-    group.add(wire);
-
-    const nodes=new THREE.Points(
-      geo,
-      new THREE.PointsMaterial({color:0xb8ffe1,size:.045,transparent:true,opacity:.9})
-    );
-    group.add(nodes);
-
-    const count=420,pos=new Float32Array(count*3);
-    for(let i=0;i<count;i++){
-      const r=2.3+Math.random()*2.7,th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);
-      pos[i*3]=r*Math.sin(ph)*Math.cos(th);
-      pos[i*3+1]=r*Math.sin(ph)*Math.sin(th);
-      pos[i*3+2]=r*Math.cos(ph);
+  function runLoaderSequence(isExpedited = false) {
+    if (prefersReducedMotion) {
+      document.body.classList.add('loaded');
+      if (loader) {
+        loader.setAttribute('aria-hidden', 'true');
+        loader.style.display = 'none';
+      }
+      return;
     }
-    const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
-    const field=new THREE.Points(pg,new THREE.PointsMaterial({color:0x77a7ff,size:.018,transparent:true,opacity:.42}));
-    scene.add(field);
 
-    const ring1=new THREE.Mesh(new THREE.TorusGeometry(2.05,.006,8,180),new THREE.MeshBasicMaterial({color:0x35556f,transparent:true,opacity:.55}));
-    ring1.rotation.x=1.12;ring1.rotation.z=.35;scene.add(ring1);
-    const ring2=ring1.clone();ring2.scale.setScalar(.78);ring2.rotation.y=1.2;scene.add(ring2);
+    if (!loader || !counterEl || !progressBar) {
+      document.body.classList.add('loaded');
+      return;
+    }
 
-    let mx=0,my=0,tx=0,ty=0;
-    wrap.addEventListener('pointermove',e=>{
-      const r=wrap.getBoundingClientRect();
-      tx=((e.clientX-r.left)/r.width-.5)*.7;
-      ty=((e.clientY-r.top)/r.height-.5)*.55;
+    // Reset loader UI
+    loader.style.display = 'flex';
+    document.body.classList.remove('loaded');
+    loader.removeAttribute('aria-hidden');
+    counterEl.textContent = '00';
+    progressBar.style.width = '0%';
+
+    let currentVal = 0;
+    const targetVal = 100;
+    const duration = isExpedited ? 380 : 1300; // ms
+    const startTime = performance.now();
+
+    function step(timestamp) {
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Custom easing curve for natural deceleration
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      currentVal = Math.floor(easedProgress * targetVal);
+
+      // Format with leading zero
+      counterEl.textContent = currentVal < 10 ? '0' + currentVal : String(currentVal);
+      progressBar.style.width = currentVal + '%';
+
+      // Update telemetry log
+      if (logEl) {
+        for (let i = telemetryLogs.length - 1; i >= 0; i--) {
+          if (currentVal >= telemetryLogs[i].at) {
+            logEl.innerHTML = `<strong>&gt;</strong> ${telemetryLogs[i].text}`;
+            break;
+          }
+        }
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        counterEl.textContent = '100';
+        progressBar.style.width = '100%';
+        if (logEl) logEl.innerHTML = `<strong>&gt;</strong> SYSTEM CALIBRATED // OPENING INTERFACE`;
+
+        // Eye-comfort pause before curtain split
+        setTimeout(() => {
+          document.body.classList.add('loaded');
+          loader.setAttribute('aria-hidden', 'true');
+          sessionStorage.setItem('nm_portfolio_seen', 'true');
+
+          setTimeout(() => {
+            if (document.body.classList.contains('loaded')) {
+              loader.style.display = 'none';
+            }
+          }, 850);
+        }, isExpedited ? 80 : 200);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // Determine whether to run full or expedited loader
+  const hasVisited = sessionStorage.getItem('nm_portfolio_seen');
+  if (hasVisited) {
+    // Expedited 380ms polite lift on repeat navigation in the same session
+    runLoaderSequence(true);
+  } else {
+    // Cinematic 1.3s first impression
+    runLoaderSequence(false);
+  }
+
+  // Replay loader on demand
+  if (replayBtn) {
+    replayBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        runLoaderSequence(false);
+      }, 250);
     });
-    wrap.addEventListener('pointerleave',()=>{tx=ty=0});
+  }
 
-    const resize=()=>{
-      const w=wrap.clientWidth,h=wrap.clientHeight;
-      renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
-    };
-    resize();new ResizeObserver(resize).observe(wrap);
-
-    const clock=new THREE.Clock();
-    function frame(){
-      const t=clock.getElapsedTime();
-      mx+=(tx-mx)*.035;my+=(ty-my)*.035;
-      group.rotation.y=t*.12+mx;group.rotation.x=t*.07+my;
-      field.rotation.y=-t*.018;field.rotation.x=t*.012;
-      ring1.rotation.z=t*.04;ring2.rotation.z=-t*.035;
-      renderer.render(scene,camera);
-      requestAnimationFrame(frame);
+  /* --------------------------------------------------------------------------
+     2. REAL-TIME NAIROBI LOCAL CLOCK
+     -------------------------------------------------------------------------- */
+  function updateNairobiClock() {
+    if (!liveClockEl) return;
+    try {
+      const options = {
+        timeZone: 'Africa/Nairobi',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      const formatter = new Intl.DateTimeFormat([], options);
+      const parts = formatter.format(new Date());
+      liveClockEl.textContent = `${parts} EAT`;
+    } catch (e) {
+      const now = new Date();
+      liveClockEl.textContent = now.toTimeString().slice(0, 8) + ' EAT';
     }
-    frame();
-    $('.fallback',wrap)?.remove();
-  }catch(err){console.warn('3D fallback active',err)}
-}
-if('requestIdleCallback'in window) requestIdleCallback(boot3D,{timeout:1800}); else setTimeout(boot3D,500);
+  }
+  updateNairobiClock();
+  setInterval(updateNairobiClock, 1000);
+
+  /* --------------------------------------------------------------------------
+     3. INTERACTIVE PROJECT DRAWERS
+     -------------------------------------------------------------------------- */
+  const projectItems = document.querySelectorAll('.project-item');
+  projectItems.forEach((item) => {
+    const btn = item.querySelector('.project-row-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close other open project drawers for clean accordion feel
+      projectItems.forEach((other) => {
+        if (other !== item) {
+          other.classList.remove('active');
+          const otherBtn = other.querySelector('.project-row-btn');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current
+      item.classList.toggle('active', !isActive);
+      btn.setAttribute('aria-expanded', String(!isActive));
+    });
+  });
+
+  /* --------------------------------------------------------------------------
+     4. THEME CONTROLLER (PAPER / OBSIDIAN)
+     -------------------------------------------------------------------------- */
+  function getPreferredTheme() {
+    const stored = localStorage.getItem('nm_theme');
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    const metaTheme = document.getElementById('meta-theme-color');
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      if (metaTheme) metaTheme.setAttribute('content', '#0f1211');
+      if (themeToggleBtn) {
+        themeToggleBtn.setAttribute('aria-label', 'Switch to daylight paper theme');
+        themeToggleBtn.querySelector('.theme-label').textContent = 'Paper';
+      }
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if (metaTheme) metaTheme.setAttribute('content', '#f4f1ea');
+      if (themeToggleBtn) {
+        themeToggleBtn.setAttribute('aria-label', 'Switch to archive obsidian theme');
+        themeToggleBtn.querySelector('.theme-label').textContent = 'Obsidian';
+      }
+    }
+    localStorage.setItem('nm_theme', theme);
+  }
+
+  // Initial theme setup
+  applyTheme(getPreferredTheme());
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     5. ONE-CLICK EMAIL COPY WITH FEEDBACK
+     -------------------------------------------------------------------------- */
+  if (emailCopyBtn) {
+    emailCopyBtn.addEventListener('click', async () => {
+      const email = 'nicodemusmuema84@gmail.com';
+      try {
+        await navigator.clipboard.writeText(email);
+        const originalText = emailCopyBtn.textContent;
+        emailCopyBtn.textContent = 'Copied! ✓';
+        emailCopyBtn.style.borderColor = 'var(--rust)';
+        emailCopyBtn.style.color = 'var(--rust)';
+
+        setTimeout(() => {
+          emailCopyBtn.textContent = originalText;
+          emailCopyBtn.style.borderColor = '';
+          emailCopyBtn.style.color = '';
+        }, 2200);
+      } catch (err) {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        emailCopyBtn.textContent = 'Copied! ✓';
+        setTimeout(() => {
+          emailCopyBtn.textContent = 'Copy';
+        }, 2200);
+      }
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     6. MOBILE MENU TOGGLE
+     -------------------------------------------------------------------------- */
+  if (mobileMenuBtn && navEl) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = navEl.classList.toggle('nav-open');
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close on link click
+    navEl.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navEl.classList.remove('nav-open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     7. CONTACT FORM MAILTO GENERATOR
+     -------------------------------------------------------------------------- */
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      const name = formData.get('name') || '';
+      const email = formData.get('email') || '';
+      const message = formData.get('message') || '';
+
+      const subject = encodeURIComponent(`Inquiry from ${name} via portfolio.nicxon.tech`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\nProject / Inquiry Details:\n${message}\n\n---\nSent via portfolio.nicxon.tech`
+      );
+
+      window.location.href = `mailto:nicodemusmuema84@gmail.com?subject=${subject}&body=${body}`;
+    });
+  }
+
+})();
